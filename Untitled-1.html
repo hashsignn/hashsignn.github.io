@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Harjot Singh's Portfolio - Quantitative Finance, Algorithmic Trading & Portfolio Management">
+  <title>Harjot Singh | Quantitative Finance Portfolio</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+  
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --bg-light: #f4f5f7;
+      --text-light: #2d3748;
+      --bg-dark: #0a0a0a;
+      --text-dark: #f9f9f9;
+      --transition-speed: 0.3s;
+      --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 4px 15px rgba(0, 0, 0, 0.1);
+      --shadow-heavy: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== BASE STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      padding-top: 80px;
+      scroll-behavior: smooth;
+    }
+
+    body.light-theme {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body.dark-theme {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    /* ===== HEADER & NAVIGATION ===== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-light);
+      transition: background-color var(--transition-speed);
+    }
+
+    body.light-theme .header {
+      background-color: rgba(244, 245, 247, 0.95);
+    }
+
+    body.dark-theme .header {
+      background-color: rgba(10, 10, 10, 0.95);
+    }
+
+    .header .logo img {
+      width: 40px;
+      height: 40px;
+      transition: transform var(--transition-speed);
+    }
+
+    .header .logo img:hover {
+      transform: rotate(360deg);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+      transition: opacity var(--transition-speed);
+      position: relative;
+    }
+
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: width var(--transition-speed);
+    }
+
+    .navbar a:hover::after {
+      width: 100%;
+    }
+
+    .navbar a:hover {
+      opacity: 0.8;
+    }
+
+    /* ===== BUTTONS ===== */
+    .theme-toggle, .view-toggle {
+      position: relative;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all var(--transition-speed) ease;
+      overflow: hidden;
+    }
+
+    .theme-toggle {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    body.dark-theme .theme-toggle {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .view-toggle {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      margin-left: 0.5rem;
+    }
+
+    body.dark-theme .view-toggle {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .theme-toggle::before, .view-toggle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .theme-toggle:hover, .view-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    /* ===== HOME SECTION ===== */
+    .home-section {
+      min-height: calc(100vh - 80px);
+      padding: 4rem 2rem;
+      transition: background-color var(--transition-speed);
+    }
+
+    .hash-text {
+      transition: color 0.3s;
+    }
+
+    body.light-theme .hash-text {
+      color: #1a202c;
+    }
+
+    body.dark-theme .hash-text {
+      color: #f9f9f9;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      transition: transform var(--transition-speed), opacity var(--transition-speed);
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+
+    /* ===== EDUCATION SECTION ===== */
+    #education {
+      display: flex;
+      width: 100%;
+      height: 18vh;
+      overflow: hidden;
+    }
+
+    .edu-block {
+      position: relative;
+      width: 50%;
+      height: 100%;
+    }
+
+    .edu-block img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(4px);
+      transition: filter 0.3s ease;
+    }
+    
+    .edu-block:hover img {
+      filter: blur(2px);
+    }
+
+    .edu-block .description {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .edu-block h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== WORK EXPERIENCE SECTION ===== */
+    .work-experience-section {
+      width: 90%;
+      margin: 50px auto;
+      padding: 40px;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      border-radius: 12px;
+      color: #fff;
+      box-shadow: var(--shadow-medium);
+    }
+    
+    body.light-theme .work-experience-section {
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      color: #1e293b;
+    }
+
+    .work-experience-section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .experience {
+      margin-bottom: 15px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    
+    body.light-theme .experience {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .experience:hover {
+      transform: translateX(10px);
+      background: rgba(0, 0, 0, 0.6);
+    }
+    
+    body.light-theme .experience:hover {
+      background: #f8fafc;
+    }
+
+    .experience p {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .experience img {
+      margin-right: 15px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+    }
+
+    .expanded-info {
+      display: none;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 15px;
+    }
+    
+    body.light-theme .expanded-info {
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* ===== PROP FIRM TRADING SECTION (NEW) ===== */
+    .prop-firm-section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .prop-firm-section h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    body.dark-theme .prop-firm-section h2 {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .trading-philosophy {
+      background: rgba(102, 126, 234, 0.05);
+      border-left: 4px solid #667eea;
+      padding: 2rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    
+    body.dark-theme .trading-philosophy {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .metric-card {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    body.dark-theme .metric-card {
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #10b981;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .trading-table-container {
+      overflow-x: auto;
+      margin-bottom: 3rem;
+    }
+
+    .trading-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-light);
+    }
+
+    .trading-table th, .trading-table td {
+      padding: 1.2rem;
+      text-align: left;
+    }
+
+    .trading-table th {
+      background: #667eea;
+      color: white;
+      font-weight: 600;
+    }
+    
+    body.dark-theme .trading-table th {
+      background: #2d3748;
+    }
+
+    .trading-table tr:nth-child(even) {
+      background: rgba(0,0,0,0.02);
+    }
+    
+    body.dark-theme .trading-table tr:nth-child(even) {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .trading-table td {
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    body.dark-theme .trading-table td {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .chart-placeholder {
+      width: 100%;
+      height: 350px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      color: #64748b;
+      font-weight: 500;
+      background: rgba(248, 250, 252, 0.5);
+    }
+    
+    body.dark-theme .chart-placeholder {
+      border-color: #334155;
+      color: #94a3b8;
+      background: rgba(15, 23, 42, 0.5);
+    }
+    
+    .verification-note {
+      font-size: 0.85rem;
+      font-style: italic;
+      text-align: center;
+      opacity: 0.7;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    .projects {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .projects h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .project-item {
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      box-shadow: var(--shadow-light);
+    }
+
+    body.light-theme .project-item {
+      background-color: #fff;
+    }
+
+    body.dark-theme .project-item {
+      background-color: #111;
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .project-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 0;
+      flex: 1;
+    }
+
+    .project-tag {
+      font-size: 0.8rem;
+      background-color: #3182ce;
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .project-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .project-item.expanded .project-details {
+      max-height: 500px;
+      margin-top: 1rem;
+    }
+
+    .project-details p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .view-code {
+      display: inline-block;
+      text-decoration: none;
+      color: #3182ce;
+      font-weight: bold;
+      transition: transform var(--transition-speed);
+      font-size: 0.9rem;
+    }
+
+    body.dark-theme .view-code {
+      color: #63b3ed;
+    }
+
+    /* ===== RESEARCH SECTION ===== */
+    .research-section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .research-section h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .research-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .research-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform var(--transition-speed);
+      box-shadow: var(--shadow-light);
+    }
+
+    body.light-theme .research-item {
+      background: #fff;
+    }
+
+    body.dark-theme .research-item {
+      border-left-color: #8b5cf6;
+      background: #111;
+    }
+
+    .research-item:hover {
+      transform: translateX(10px);
+    }
+
+    .research-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .research-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      flex: 1;
+    }
+
+    .research-date, .research-status {
+      font-size: 0.85rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+    }
+
+    .research-date {
+      background: rgba(102, 126, 234, 0.1);
+      color: #5a67d8;
+      font-weight: 600;
+    }
+
+    body.dark-theme .research-date {
+      background: rgba(139, 92, 246, 0.2);
+      color: #b794f4;
+    }
+
+    .research-status {
+      background: rgba(16, 185, 129, 0.1);
+      color: #047857;
+      font-weight: 600;
+    }
+    
+    body.dark-theme .research-status {
+      color: #34d399;
+    }
+
+    .research-status.in-progress {
+      background: rgba(237, 137, 54, 0.1);
+      color: #c05621;
+    }
+    
+    body.dark-theme .research-status.in-progress {
+      color: #fbd38d;
+    }
+
+    .research-abstract {
+      margin: 1rem 0;
+      line-height: 1.7;
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    .research-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .research-link {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #5a67d8;
+      font-weight: 600;
+      transition: transform var(--transition-speed);
+    }
+
+    body.dark-theme .research-link {
+      color: #a3bffa;
+    }
+
+    /* ===== CERTIFICATIONS SECTION ===== */
+    .certifications-section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .certification-item {
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: transform var(--transition-speed);
+      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    body.light-theme .certification-item {
+      background-color: #fff;
+    }
+
+    body.dark-theme .certification-item {
+      background-color: #111;
+      border-color: rgba(255,255,255,0.05);
+    }
+
+    .certification-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .certification-title {
+      font-weight: bold;
+      flex: 1;
+      font-size: 1.05rem;
+    }
+
+    .certification-badge {
+      background-color: #38a169;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .certification-details {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    body.light-theme .dark-only { display: none; }
+    body.dark-theme .light-only { display: none; }
+
+    /* ===== SKILLS SECTION ===== */
+    .skills-section {
+      width: 85%;
+      margin: 0 auto;
+      padding: 6rem 0;
+    }
+
+    .skills-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      font-weight: bold;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-light);
+      transition: transform 0.3s;
+    }
+
+    body.light-theme .skill-item {
+      background-color: #fff;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    body.dark-theme .skill-item {
+      background-color: #111;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-media {
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .skill-media img,
+    .skill-media dotlottie-player {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .skill-content {
+      flex-grow: 1;
+    }
+
+    .skill-content h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .skill-bar {
+      position: relative;
+      height: 6px;
+      border-radius: 4px;
+      margin: 0.8rem 0;
+      overflow: hidden;
+    }
+
+    body.light-theme .skill-bar { background-color: #e2e8f0; }
+    body.dark-theme .skill-bar { background-color: #2d3748; }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease-in-out;
+    }
+
+    body.light-theme .skill-bar-fill { background-color: #3182ce; }
+    body.dark-theme .skill-bar-fill { background-color: #63b3ed; }
+
+    /* ===== LIFE EVENTS SECTION ===== */
+    #life-events {
+      padding: 6rem 1.5rem;
+    }
+
+    #life-events .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .carousel-container {
+      overflow: hidden;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-medium);
+      z-index: 10;
+    }
+
+    .nav-arrow.prev { left: 10px; }
+    .nav-arrow.next { right: 10px; }
+
+    body.dark-theme .nav-arrow {
+      background: rgba(30, 30, 30, 0.9);
+      color: #f9f9f9;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 1rem 0;
+      scrollbar-width: none;
+    }
+
+    .carousel-track::-webkit-scrollbar { display: none; }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 360px;
+      height: 250px;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      scroll-snap-align: center;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .carousel-item:hover .overlay { opacity: 1; }
+
+    .overlay-content {
+      text-align: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    .overlay h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    #contact {
+      padding: 6rem 2rem;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-container {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .animation-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contact-form-container {
+      flex: 1;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-heavy);
+    }
+
+    body.light-theme .contact-form-container { background: #fff; }
+    body.dark-theme .contact-form-container { background: #111; }
+
+    .contact-form h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      font-weight: bold;
+    }
+
+    .form-group { margin-bottom: 1.5rem; }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.1);
+      transition: border-color 0.3s ease;
+    }
+
+    body.dark-theme .form-group input, body.dark-theme .form-group textarea {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #fff;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #3182ce;
+    }
+
+    .contact-btn {
+      background-color: #3182ce;
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.05rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-btn:hover { background-color: #2b6cb0; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-section h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+
+    .footer-section p, .footer-section a {
+      color: #a0aec0;
+      font-size: 0.95rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #1a202c;
+      color: #fff;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      background: #3182ce;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-container { flex-direction: column; }
+    }
+
+    @media (max-width: 768px) {
+      .project-grid { grid-template-columns: 1fr; }
+      #education { flex-direction: column; height: auto; }
+      .edu-block { width: 100%; min-height: 250px; }
+      .header { flex-direction: column; gap: 1rem; padding: 1rem; }
+      .navbar ul { flex-wrap: wrap; justify-content: center; }
+      body { padding-top: 140px; }
+      .metrics-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body class="dark-theme desktop-view">
+  <header class="header">
+    <div class="logo">
+      <img src="C:\Users\91701\Downloads\file.png" alt="Logo">
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#trading">Trading</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#certifications">Credentials</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+    </nav>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <button class="theme-toggle" aria-label="Toggle theme">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <section id="home" class="flex flex-col lg:flex-row p-4 home-section items-center">
+    <div class="w-full lg:w-3/5 lg:ml-8 mb-8 lg:mb-0">
+      <h1 class="text-5xl font-bold tracking-wide leading-tight">
+        <span class="hash-text">Harjot</span> <span class="text-blue-500">Singh</span>
+      </h1>
+      <h2 class="text-xl font-semibold mt-2 opacity-80">Quantitative Finance | Algorithmic Trading | Portfolio Management</h2>
+      <p class="mt-6 text-lg opacity-90 leading-relaxed max-w-3xl">
+        Incoming Master of Arts candidate in Banking & Finance (Minor in Quantitative Finance) at the University of Zurich, with a robust foundation in financial modeling, data analytics, and algorithmic trading. Combining a strong academic background (9.39 CGPA) with hands-on experience in portfolio risk adjustment, derivatives pricing, and machine learning, I am driven to build resilient, tech-enabled investment strategies. Currently focused on advancing within asset management and quantitative research, with the long-term objective of launching and managing a data-driven hedge fund.
+      </p>
+
+      <div class="mt-8 flex space-x-4">
+        <button class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 shadow-lg">
+          <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/harjotsinghbumbrah?background_color=000000&text_color=ffffff&primary_color=46ff5c'});return false;">
+            Schedule a Meeting
+          </a>
+        </button>
+        <a href="C:\Users\91701\OneDrive\Desktop\Profile stuff\harjot singh cv Final.docx" download>
+          <button class="bg-gray-800 text-white border border-gray-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-200 shadow-lg">
+            Download Resume
+          </button>
+        </a>
+      </div>
+
+      <div class="flex flex-wrap gap-12 mt-12 items-start">
+        <div class="flex flex-col">
+          <h3 class="text-sm uppercase tracking-wider font-bold mb-4 opacity-70">Core Stack</h3>
+          <div class="flex space-x-5">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/free-code-icon-download-in-svg-png-gif-file-formats--dev-beautiful-single-color-icons-pack-miscellaneous-460136.png?f=webp&w=256" alt="Coding" title="Python & ML" class="icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Microsoft_Excel_2013-2019_logo.svg/1200px-Microsoft_Excel_2013-2019_logo.svg.png" alt="Excel" title="Financial Modeling" class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/3898/3898167.png" alt="Quantitative Analysis" title="Quantitative Analytics" class="icon">
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <h3 class="text-sm uppercase tracking-wider font-bold mb-4 opacity-70">Connect</h3>
+          <div class="flex space-x-5">
+            <a href="https://www.linkedin.com/in/hashsign" target="_blank" title="LinkedIn">
+              <img src="https://cdn-icons-png.flaticon.com/256/145/145807.png" alt="LinkedIn" class="icon">
+            </a>
+            <a href="https://github.com/HashsignF1" target="_blank" title="GitHub">
+              <img src="https://cdn.worldvectorlogo.com/logos/github-icon-2.svg" alt="GitHub" class="icon">
+            </a>
+            <a href="https://www.youtube.com/@Hashsignn" target="_blank" title="YouTube">
+              <img src="https://cdn-icons-png.flaticon.com/512/270/270834.png" alt="YouTube" class="icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-2/5 flex items-center justify-center mt-12 lg:mt-0">
+      <dotlottie-player src="https://lottie.host/a9c59b0d-b3c7-428f-a230-1799518fbe53/Qd9DcHjl74.json" background="transparent" speed="1" style="width: 460px; height: 460px;" loop autoplay></dotlottie-player>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="edu-block">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.Z9wFIHUsoj8s6tF0lwRVkAHaDf?rs=1&pid=ImgDetMain&o=7&rm=3" alt="UZH">
+      <div class="description">
+        <h3>University of Zurich (UZH)</h3>
+        <p>Master of Arts in Banking & Finance (Minor in Quantitative Finance) • Commencing August 2025</p>
+      </div>
+    </div>
+
+    <div class="edu-block">
+      <img src="https://media.licdn.com/dms/image/v2/D4D10AQHixzj8AXYRrw/image-shrink_1280/image-shrink_1280/0/1725552005299?e=2147483647&v=beta&t=8ASQHiIzi-RDjWCkSGv962zubuhWH93fmZCmVl_9d5g" alt="WorldQuant">
+      <div class="description">
+        <h3>WorldQuant University</h3>
+        <p>MSc Financial Engineering (Prospective) • Focused on quant modeling and algorithmic trading systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-experience-section" id="experience">
+    <h2>Professional Experience</h2>
+
+    <div class="experience" onclick="this.querySelector('.expanded-info').style.display = this.querySelector('.expanded-info').style.display === 'block' ? 'none' : 'block'">
+      <div class="flex justify-between items-center w-full">
+        <p><img src="https://i.ibb.co/vvRNWpNb/1663089101673.jpg" alt="Logo">Intern – CRE Financial Analyst</p>
+        <span style="font-size: 0.85rem; opacity: 0.7;">Dec 2024 - Mar 2025</span>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; opacity: 0.8; margin-left: 55px;">Springer Capital</p>
+      <div class="expanded-info">
+        <ul class="list-disc pl-5">
+          <li>Spearheaded research and data curation for commercial real estate financing and development projects.</li>
+          <li>Acted as the primary financial point of contact for partnered consultancy firms, brokers, and institutional investors.</li>
+          <li>Structured and formulated comprehensive investment memorandums and loan syndication decks to secure grant funding.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience" onclick="this.querySelector('.expanded-info').style.display = this.querySelector('.expanded-info').style.display === 'block' ? 'none' : 'block'">
+      <div class="flex justify-between items-center w-full">
+        <p><img src="https://i.ibb.co/VWgzJ8R6/1630659324303.jpg" alt="Logo">Intern – Financial & Trading Analyst</p>
+        <span style="font-size: 0.85rem; opacity: 0.7;">Feb 2024 - May 2024</span>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; opacity: 0.8; margin-left: 55px;">Margin Sentiments Advisorys Pvt Ltd</p>
+      <div class="expanded-info">
+        <ul class="list-disc pl-5">
+          <li>Engineered and backtested quantitative trading strategies utilizing technical indicators and historical market data.</li>
+          <li>Monitored client portfolios and conducted detailed market trend analysis to optimize asset allocation.</li>
+          <li>Delivered comprehensive risk-adjusted reports and tailored diversification strategies to mitigate downside exposure.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience" onclick="this.querySelector('.expanded-info').style.display = this.querySelector('.expanded-info').style.display === 'block' ? 'none' : 'block'">
+      <div class="flex justify-between items-center w-full">
+        <p><img src="https://i.ibb.co/fcL59g0/meliuscac-cover.jpg" alt="Logo">Senior Consultant</p>
+        <span style="font-size: 0.85rem; opacity: 0.7;">Jan 2023 - Jun 2024</span>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; opacity: 0.8; margin-left: 55px;">Melius – The Consultancy & Analytics Society of MSI</p>
+      <div class="expanded-info">
+        <ul class="list-disc pl-5">
+          <li>Directed an 8-member consultancy team to optimize operations for an ed-tech startup with an active user base of 20,000+, driving a 30% increase in institutional profitability.</li>
+          <li>Successfully secured INR 1.5M in Corporate Social Responsibility (CSR) funding.</li>
+          <li>Led logistics and cross-functional coordination for two major inter-college analytical summits.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="prop-firm-section" id="trading">
+    <h2>Prop Firm Trading Performance</h2>
+    
+    <div class="trading-philosophy">
+      <h3 class="font-bold text-lg mb-2">Philosophy & Strategy</h3>
+      <p>My approach to discretionary and systematic trading is rooted in strict risk management and statistical edge, focusing extensively on high-liquidity futures instruments, particularly the Micro E-mini Nasdaq (MNQ) and Micro Gold (MGC) contracts. The strategy utilizes a blend of market microstructure analysis, volume profiling, and key liquidity sweeps to identify asymmetric risk-to-reward opportunities. Capital preservation is prioritized through rigid daily draw-down limits and dynamic position sizing.</p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">1.85</div>
+        <div class="metric-label">Profit Factor</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">1 : 2.5</div>
+        <div class="metric-label">Avg Risk:Reward</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value text-red-500">-3.2%</div>
+        <div class="metric-label">Max Drawdown</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">84%</div>
+        <div class="metric-label">Consistency Score</div>
+      </div>
+    </div>
+
+    <div class="trading-table-container">
+      <table class="trading-table">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Gross Return</th>
+            <th>Net Return</th>
+            <th>Max Drawdown</th>
+            <th>Win Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-semibold">Q1 2025</td>
+            <td class="text-green-500 font-bold">+X.XX%</td>
+            <td>+X.XX%</td>
+            <td class="text-red-400">-X.XX%</td>
+            <td>XX.X%</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Q4 2024</td>
+            <td class="text-green-500 font-bold">+X.XX%</td>
+            <td>+X.XX%</td>
+            <td class="text-red-400">-X.XX%</td>
+            <td>XX.X%</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Q3 2024</td>
+            <td class="text-green-500 font-bold">+X.XX%</td>
+            <td>+X.XX%</td>
+            <td class="text-red-400">-X.XX%</td>
+            <td>XX.X%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart-placeholder">
+      [ Placeholder: High-Resolution Equity Curve Chart ]
+    </div>
+
+    <p class="verification-note">
+      <strong>Verification Source:</strong> The metrics and equity curve displayed above represent live, funded-tier execution verified through <em>[Insert Firm Name, e.g., Topstep / FTMO]</em>. All data is rigorously tracked and audited by the firm’s proprietary risk management software, ensuring compliance with institutional drawdown parameters and consistency rules.
+    </p>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2>Technical Projects</h2>
+    <div class="project-grid">
+      <div class="project-item" onclick="this.classList.toggle('expanded')">
+        <img src="https://i.ibb.co/5WD97mN1/Screenshot-2025-02-16-212825.png" alt="Portfolio Analysis" class="project-image">
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Indian Equity Portfolio Optimization</h3>
+            <span class="project-tag">Python</span>
+          </div>
+          <div class="project-details">
+            <p>Constructed an optimized, unsystematic risk-adjusted equity portfolio leveraging the Efficient Frontier. Evaluated performance via Sharpe, Treynor, and Jensen’s Alpha measures. Implemented Value at Risk (VaR) using Monte Carlo simulations, projecting a 41% maximum return over a 252-day trading window.</p>
+            <a href="https://colab.research.google.com/drive/1Lcl5rOugXY2SrMuK4tamI5TSJDkeYw1a#scrollTo=e307b7b2" target="_blank" class="view-code">View Source Code →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item" onclick="this.classList.toggle('expanded')">
+        <img src="https://i.ibb.co/6JXpJMr2/Screenshot-2025-02-16-212433.png" alt="Bitcoin LSTM" class="project-image">
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">BTC Forecasting via Deep Learning</h3>
+            <span class="project-tag">Deep Learning</span>
+          </div>
+          <div class="project-details">
+            <p>Developed a Long Short-Term Memory (LSTM) neural network to forecast Bitcoin price action amidst high volatility regimes. Configured over a 45-day rolling trading window, the model achieved a 70% directional accuracy rate during out-of-sample backtesting.</p>
+            <a href="https://colab.research.google.com/drive/19FbYUAKCTc9L8HsE9RVOkXdxt239rHcy" target="_blank" class="view-code">View Source Code →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item" onclick="this.classList.toggle('expanded')">
+        <dotlottie-player src="https://lottie.host/34a2bfcd-f843-4d8d-af0f-f9d0c0c1e1a3/fkDsVa5iUh.lottie" background="transparent" speed="1" style="width: 100%; height: 200px" loop autoplay></dotlottie-player>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Binomial Asset Pricing Engine</h3>
+            <span class="project-tag">Python</span>
+          </div>
+          <div class="project-details">
+            <p>Programmed a multi-period binomial options pricing engine. The model iterates through discrete time steps to accurately value European and American derivative contracts, dynamically adjusting for volatility and risk-free rates.</p>
+            <a href="#" target="_blank" class="view-code">View Source Code →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item" onclick="this.classList.toggle('expanded')">
+        <dotlottie-player src="https://lottie.host/34a2bfcd-f843-4d8d-af0f-f9d0c0c1e1a3/fkDsVa5iUh.lottie" background="transparent" speed="1" style="width: 100%; height: 200px" loop autoplay></dotlottie-player>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Topological Options Risk Eval</h3>
+            <span class="project-tag">Math Finance</span>
+          </div>
+          <div class="project-details">
+            <p>Conducted advanced theoretical research exploring the risk surfaces of derivative contracts utilizing topological and geometric methods, providing novel visualizations for option Greeks and structural vulnerabilities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="research-section" id="research">
+    <h2>Research & Publications</h2>
+    <div class="research-grid">
+      <div class="research-item">
+        <div class="research-header">
+          <h3 class="research-title">Market Microstructure and High-Frequency Trading Dynamics in Emerging Markets</h3>
+          <span class="research-date">Published 2024</span>
+        </div>
+        <p class="research-abstract">Investigated the impact of HFT on liquidity provision, price discovery, and volatility in Asian exchanges. Employed tick-by-tick data and econometric modeling to evaluate shifts in market quality metrics.</p>
+        <div class="research-links">
+          <a href="#" class="research-link"><i class="fas fa-file-pdf mr-2"></i>Read Paper</a>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <div class="research-header">
+          <h3 class="research-title">Cryptocurrency Market Efficiency: Evidence from Bitcoin and Ethereum</h3>
+          <span class="research-date">Published 2024</span>
+        </div>
+        <p class="research-abstract">Examined the weak-form efficiency of digital asset markets. Analyzed the predictability of BTC and ETH returns utilizing a comprehensive 2017–2024 dataset, applying rigorous statistical testing to identify transient arbitrage opportunities.</p>
+        <div class="research-links">
+          <a href="#" class="research-link"><i class="fas fa-file-pdf mr-2"></i>Read Paper</a>
+        </div>
+      </div>
+
+      <div class="research-item" style="border-left-color: #ed8936;">
+        <div class="research-header">
+          <h3 class="research-title">Machine Learning Applications in Portfolio Optimization: A Comparative Study</h3>
+          <span class="research-status in-progress">In Progress (2025)</span>
+        </div>
+        <p class="research-abstract">Conducting an extensive comparative analysis contrasting Modern Portfolio Theory (MPT) with advanced ML architectures (Reinforcement Learning, Deep Neural Networks, Ensemble Methods) under constrained, real-world market conditions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications" class="certifications-section">
+    <h2 class="text-center font-bold text-4xl mb-12">Credentials & Certifications</h2>
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <div class="w-full lg:w-1/3">
+        <h3 class="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Developer Activity</h3>
+        <img src="https://leetcard.jacoblin.cool/HashSign?theme=dark&font=Jaldi&ext=heatmap" alt="LeetCode" class="w-full mb-4 rounded shadow-lg dark-only">
+        <img src="https://leetcard.jacoblin.cool/HashSign?theme=light&font=Jaldi&ext=heatmap" alt="LeetCode" class="w-full mb-4 rounded shadow-lg light-only">
+        
+        <img src="https://github-readme-stats.vercel.app/api?username=HashsignF1&theme=dark&show_icons=true" alt="GitHub" class="w-full rounded shadow-lg dark-only">
+        <img src="https://github-readme-stats.vercel.app/api?username=HashsignF1&theme=default&show_icons=true" alt="GitHub" class="w-full rounded shadow-lg light-only">
+      </div>
+
+      <div class="w-full lg:w-1/3">
+        <h3 class="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Achieved</h3>
+        <div class="certification-item">
+          <div class="certification-header">
+            <h4 class="certification-title">IELTS Academic</h4>
+            <span class="certification-badge">July 2024</span>
+          </div>
+          <p class="text-sm mt-2 opacity-80">Overall Band 8.5/9.0 (R: 9, L: 9, S: 7.5, W: 7.5)</p>
+        </div>
+        <div class="certification-item">
+          <div class="certification-header">
+            <h4 class="certification-title">GRE General Test</h4>
+            <span class="certification-badge">Dec 2024</span>
+          </div>
+        </div>
+        <div class="certification-item">
+          <div class="certification-header">
+            <h4 class="certification-title">Google: Crash Course in Python</h4>
+            <span class="certification-badge">Jan 2025</span>
+          </div>
+        </div>
+        <div class="certification-item">
+          <div class="certification-header">
+            <h4 class="certification-title">Math for ML & Data Science</h4>
+            <span class="certification-badge">2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/3">
+        <h3 class="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Candidate / Upcoming</h3>
+        <div class="certification-item opacity-80 border-dashed">
+          <h4 class="certification-title">Financial Risk Manager (FRM) Part 1</h4>
+          <p class="text-xs mt-1 text-blue-400">Target: 2026</p>
+        </div>
+        <div class="certification-item opacity-80 border-dashed">
+          <h4 class="certification-title">Goethe-Zertifikat B1 (German)</h4>
+          <p class="text-xs mt-1 text-blue-400">Target: 2026</p>
+        </div>
+        <div class="certification-item opacity-80 border-dashed">
+          <h4 class="certification-title">Deep Learning Specialization</h4>
+          <p class="text-xs mt-1 text-blue-400">Target: 2026</p>
+        </div>
+        <div class="certification-item opacity-80 border-dashed">
+          <h4 class="certification-title">Certificate in Quantitative Finance (CQF)</h4>
+          <p class="text-xs mt-1 text-blue-400">Target: 2027</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="skills-section" id="skills">
+    <h2 class="skills-title">Core Competencies</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-content">
+          <h3>Programming & Data Science</h3>
+          <p class="text-sm opacity-70 mb-2">Python, ML (LSTM), Time-Series Analysis</p>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-content">
+          <h3>Mathematical & Statistical</h3>
+          <p class="text-sm opacity-70 mb-2">Stochastic Calculus, Statistical Arbitrage</p>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 75%;"></div></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-content">
+          <h3>Financial Modeling & Valuation</h3>
+          <p class="text-sm opacity-70 mb-2">Derivatives Pricing, DCF, Risk (VaR)</p>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-content">
+          <h3>Market Microstructure</h3>
+          <p class="text-sm opacity-70 mb-2">Order Flow, Liquidity Analysis</p>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="life-events">
+    <h2 class="section-title">Milestones</h2>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="UZH">
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3>August 2025</h3>
+              <p>Commencing MA Banking & Finance at UZH</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Graduation">
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3>June 2024</h3>
+              <p>Graduated BBA Honors (9.39 CGPA)</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Trading">
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3>March 2024</h3>
+              <p>Commenced formal quant and financial analytics roles</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-container">
+      <div class="animation-container hidden lg:flex">
+        <dotlottie-player src="https://lottie.host/9e50cd8d-40b0-4aef-9915-1d02223510f3/8ZqHjN1XLL.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>
+      </div>
+      <div class="contact-form-container">
+        <h2>Initiate Contact</h2>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Institutional/Corporate Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Inquiry</label>
+            <textarea id="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="contact-btn">Transmit Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Harjot Singh (Hash Sign)</h3>
+        <p>Quantitative Finance • Algorithmic Trading</p>
+      </div>
+      <div class="footer-section">
+        <h3>Network</h3>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/hashsign" class="social-icon"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/HashsignF1" class="social-icon"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle
+    const toggleButton = document.querySelector('.theme-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      document.body.classList.toggle('dark-theme');
+      toggleButton.textContent = document.body.classList.contains('light-theme') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+  </script>
+</body>
+</html>
